@@ -73,8 +73,8 @@ const WhyChooseUs = () => {
       <div className="container mx-auto max-w-7xl">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold text-primary mb-4">
-            Why Choose AGFineserve?
+          <h2 className="text-3xl lg:text-4xl font-bold text-center mb-4">
+            Why Choose Abhishek Financial Solutions?
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             We built our foundation on three core principles that make us the trusted choice for thousands of customers.

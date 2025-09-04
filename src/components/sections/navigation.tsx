@@ -41,7 +41,7 @@ const Navigation = () => {
             </div>
             <div className="flex flex-col">
               <span className="text-xl font-bold text-primary tracking-tight">
-                AGFineserve
+                Abhishek Financial Solutions
               </span>
               <span className="text-xs text-muted-foreground -mt-1">
                 Your Future, Financed
