@@ -11,20 +11,20 @@ const testimonialsData: Testimonial[] = [
   {
     name: "Madhuri",
     loanType: "Personal Loan",
-    quote: "“I loved the customer service you guys provided me. That was very nice and patient with questions I had. I would really like definitely come back here”",
-    image: "https://via.placeholder.com/80x80/e5e7eb/4b5563?text=M",
+    quote: "I loved the customer service you guys provided me. That was very nice and patient with questions I had. I would really like definitely come back here",
+    image: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/project-uploads/f545d951-a949-4c13-9eac-3c8cdaf207bc/generated_images/professional-headshot-portrait-of-a-midd-295c4a62-20250904071902.jpg",
   },
   {
     name: "Neelam",
     loanType: "Education Loan",
-    quote: "“I had a good experience with Insight Loan Services. I am thankful to insight for the help you guys gave me. My loan was easy and fast. thank you Insigh”",
-    image: "https://via.placeholder.com/80x80/e5e7eb/4b5563?text=N",
+    quote: "I had a good experience with Insight Loan Services. I am thankful to insight for the help you guys gave me. My loan was easy and fast. thank you Insigh",
+    image: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/project-uploads/f545d951-a949-4c13-9eac-3c8cdaf207bc/generated_images/professional-headshot-portrait-of-a-youn-9b4b7fa3-20250904071913.jpg",
   },
   {
     name: "Vishal",
     loanType: "Car Loan",
-    quote: "“We came out of their offices very happy with their service. They treated us very kind. Definite will come back. The waiting time was very appropriate.”",
-    image: "https://via.placeholder.com/80x80/e5e7eb/4b5563?text=V",
+    quote: "We came out of their offices very happy with their service. They treated us very kind. Definite will come back. The waiting time was very appropriate.",
+    image: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/project-uploads/f545d951-a949-4c13-9eac-3c8cdaf207bc/generated_images/professional-headshot-portrait-of-a-midd-e7caf269-20250904071924.jpg",
   },
 ];
 
