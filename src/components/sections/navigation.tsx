@@ -1,204 +1,165 @@
 "use client";
 
-import * as React from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { Menu, X } from "lucide-react";
+import React, { useState } from "react";
+import { Menu, X, ChevronDown, Shield } from "lucide-react";
 
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle } from
-"@/components/ui/navigation-menu";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-  SheetClose } from
-"@/components/ui/sheet";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger } from
-"@/components/ui/accordion";
+const Navigation = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
-interface NavItem {
-  label: string;
-  href: string;
-  subItems?: Omit<NavItem, 'subItems'>[];
-}
+  const navItems = [
+    { label: "HOME", href: "/" },
+    {
+      label: "SERVICES",
+      href: "#",
+      subItems: [
+        { label: "Home Loan", href: "/home-loan" },
+        { label: "Business Loan", href: "/business-loan" },
+        { label: "Education Loan", href: "/education-loan" },
+        { label: "Personal Loan", href: "/personal-loan" }
+      ]
+    },
+    { label: "WHY US", href: "#why-us" },
+    { label: "DOCUMENTS", href: "#documents" },
+    { label: "CALCULATOR", href: "/calculator" },
+    { label: "CONTACT", href: "/contact" }
+  ];
 
-const navItems: NavItem[] = [
-  { label: "HOME", href: "/" },
-  {
-    label: "LOAN",
-    href: "#",
-    subItems: [
-      { label: "Home Loan", href: "/home-loan" },
-      { label: "Personal Loan", href: "/personal-loan" },
-      { label: "Loan Eligibility Calculator", href: "/loan-eligibility-calculator" },
-      { label: "FAQ", href: "/frequntly-ask-question" }
-    ]
-  },
-  {
-    label: "ABOUT US",
-    href: "#",
-    subItems: [
-      { label: "About Us", href: "/about-us" },
-      { label: "Team", href: "/teams" }
-    ]
-  },
-  { label: "BLOG", href: "/blog" },
-  { label: "LOAN CALCULATOR", href: "/loan-calculator" },
-  { label: "CONTACT US", href: "/contact-us" }
-];
+  const toggleDropdown = (label: string) => {
+    setActiveDropdown(activeDropdown === label ? null : label);
+  };
 
-const ListItem = React.forwardRef<
-  React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a">>(
-  ({ className, title, ...props }, ref) => {
-    return (
-      <li>
-      <NavigationMenuLink asChild>
-        <a
-            ref={ref}
-            className={cn(
-              "block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent/10 focus:bg-accent/10 text-primary hover:text-accent",
-              className
-            )}
-            {...props}>
-
-          <div className="text-sm font-medium leading-none">{title}</div>
-        </a>
-      </NavigationMenuLink>
-    </li>);
-
-  });
-ListItem.displayName = "ListItem";
-
-export default function Navigation() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-white shadow-sm">
-      <div className="container mx-auto flex h-24 max-w-[1200px] items-center justify-between px-5">
-        <Link href="/" className="flex items-center">
-          <Image
-            src="https://rvfinserve.in/wp-content/uploads/2025/02/logo-dark.png"
-            alt="RV Finserve"
-            width={180}
-            height={48}
-            priority />
+    <nav className="fixed top-0 left-0 right-0 z-50 glassmorphism border-b border-white/20">
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <div className="flex items-center space-x-2">
+            <div className="relative">
+              <Shield className="w-8 h-8 text-accent" />
+              <div className="absolute inset-0 bg-accent/20 rounded-full blur-sm"></div>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-xl font-bold text-primary tracking-tight">
+                AGFineserve
+              </span>
+              <span className="text-xs text-muted-foreground -mt-1">
+                Your Future, Financed
+              </span>
+            </div>
+          </div>
 
-        </Link>
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center space-x-8">
+            {navItems.map((item) => (
+              <div key={item.label} className="relative group">
+                {item.subItems ? (
+                  <div>
+                    <button
+                      className="flex items-center space-x-1 text-sm font-medium text-primary hover:text-accent transition-colors duration-200"
+                      onClick={() => toggleDropdown(item.label)}
+                    >
+                      <span>{item.label}</span>
+                      <ChevronDown className="w-4 h-4" />
+                    </button>
+                    {activeDropdown === item.label && (
+                      <div className="absolute top-full left-0 mt-2 w-48 glassmorphism rounded-lg shadow-lg py-2 z-50">
+                        {item.subItems.map((subItem) => (
+                          <a
+                            key={subItem.label}
+                            href={subItem.href}
+                            className="block px-4 py-2 text-sm text-primary hover:text-accent hover:bg-white/20 transition-colors duration-200"
+                          >
+                            {subItem.label}
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <a
+                    href={item.href}
+                    className="text-sm font-medium text-primary hover:text-accent transition-colors duration-200"
+                  >
+                    {item.label}
+                  </a>
+                )}
+              </div>
+            ))}
+          </div>
 
-        <nav className="hidden lg:flex">
-          <NavigationMenu>
-            <NavigationMenuList>
-              {navItems.map((item) =>
-              <NavigationMenuItem key={item.label}>
-                  {item.subItems ?
-                <>
-                      <NavigationMenuTrigger className="bg-transparent text-base font-medium uppercase text-primary hover:text-accent focus:text-accent data-[active]:text-accent">
-                        {item.label}
-                      </NavigationMenuTrigger>
-                      <NavigationMenuContent>
-                        <ul className="grid w-[250px] gap-1 p-4">
-                          {item.subItems.map((subItem) =>
-                      <ListItem key={subItem.label} href={subItem.href} title={subItem.label} />
-                      )}
-                        </ul>
-                      </NavigationMenuContent>
-                    </> :
+          {/* CTA Button */}
+          <div className="hidden lg:block">
+            <a
+              href="/apply"
+              className="px-6 py-2.5 bg-accent text-white text-sm font-semibold rounded-lg hover:bg-accent/90 transition-all duration-200 hover-lift"
+            >
+              Apply Now
+            </a>
+          </div>
 
-                <Link href={item.href} legacyBehavior passHref>
-                      <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                        {item.label}
-                      </NavigationMenuLink>
-                    </Link>
-                }
-                </NavigationMenuItem>
-              )}
-            </NavigationMenuList>
-          </NavigationMenu>
-        </nav>
-        
-        <div className="lg:hidden">
-            <Sheet>
-                <SheetTrigger asChild>
-                    <Button variant="outline" size="icon">
-                        <Menu className="h-6 w-6 text-primary" />
-                        <span className="sr-only">Open navigation menu</span>
-                    </Button>
-                </SheetTrigger>
-                <SheetContent side="right" className="w-full max-w-[320px] bg-white p-0">
-                    <SheetHeader className="border-b p-4">
-                        <SheetTitle className="flex items-center justify-between">
-                            <SheetClose asChild>
-                                <Link href="/">
-                                    <Image
-                        src="https://rvfinserve.in/wp-content/uploads/2025/02/logo-dark.png"
-                        alt="RV Finserve"
-                        width={150}
-                        height={40} />
-
-                                </Link>
-                            </SheetClose>
-                            <SheetClose asChild>
-                                <Button variant="ghost" size="icon">
-                                    <X className="h-6 w-6" />
-                                </Button>
-                            </SheetClose>
-                        </SheetTitle>
-                    </SheetHeader>
-                    <div className="p-4">
-                        <Accordion type="single" collapsible className="w-full">
-                            {navItems.map((item) =>
-                  item.subItems ?
-                  <AccordionItem value={item.label} key={item.label} className="border-b-0">
-                                        <AccordionTrigger className="py-3 text-base font-medium uppercase text-primary hover:no-underline hover:text-accent border-b">
-                                            {item.label}
-                                        </AccordionTrigger>
-                                        <AccordionContent className="pt-2 pb-1 pl-4">
-                                            <ul>
-                                                {item.subItems.map((subItem) =>
-                        <li key={subItem.label} className="py-2">
-                                                        <SheetClose asChild>
-                                                            <Link href={subItem.href} className="text-sm text-foreground hover:text-accent">
-                                                                {subItem.label}
-                                                            </Link>
-                                                        </SheetClose>
-                                                    </li>
-                        )}
-                                            </ul>
-                                        </AccordionContent>
-                                    </AccordionItem> :
-
-                  <div key={item.label} className="border-b">
-                                        <SheetClose asChild>
-                                            <Link href={item.href} className={cn(
-                        "flex w-full items-center py-3 text-base font-medium uppercase text-primary hover:text-accent",
-                        item.label === 'HOME' && 'text-accent'
-                      )}>
-                                                {item.label}
-                                            </Link>
-                                        </SheetClose>
-                                    </div>
-
-                  )}
-                        </Accordion>
-                    </div>
-                </SheetContent>
-            </Sheet>
+          {/* Mobile Menu Button */}
+          <button
+            className="lg:hidden p-2 text-primary"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
-      </div>
-    </header>);
 
-}
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <div className="lg:hidden absolute top-full left-0 right-0 glassmorphism border-t border-white/20">
+            <div className="py-4 space-y-2">
+              {navItems.map((item) => (
+                <div key={item.label}>
+                  {item.subItems ? (
+                    <div>
+                      <button
+                        className="w-full flex items-center justify-between px-4 py-2 text-sm font-medium text-primary"
+                        onClick={() => toggleDropdown(item.label)}
+                      >
+                        <span>{item.label}</span>
+                        <ChevronDown className="w-4 h-4" />
+                      </button>
+                      {activeDropdown === item.label && (
+                        <div className="ml-4 space-y-1">
+                          {item.subItems.map((subItem) => (
+                            <a
+                              key={subItem.label}
+                              href={subItem.href}
+                              className="block px-4 py-2 text-sm text-muted-foreground hover:text-accent"
+                            >
+                              {subItem.label}
+                            </a>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <a
+                      href={item.href}
+                      className="block px-4 py-2 text-sm font-medium text-primary hover:text-accent"
+                    >
+                      {item.label}
+                    </a>
+                  )}
+                </div>
+              ))}
+              <div className="px-4 pt-4">
+                <a
+                  href="/apply"
+                  className="block w-full text-center px-6 py-2.5 bg-accent text-white text-sm font-semibold rounded-lg hover:bg-accent/90 transition-colors duration-200"
+                >
+                  Apply Now
+                </a>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </nav>
+  );
+};
+
+export default Navigation;

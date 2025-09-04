@@ -1,51 +1,52 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+/* Updated: 2025-09-04T05:44:49.326424 */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 @import "tailwindcss";
 @import "tw-animate-css";
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --color-background: #f8f9fa;
-  --color-foreground: #6c757d;
+  --color-background: #ffffff;
+  --color-foreground: #0F1E3A;
 
   --color-card: #ffffff;
-  --color-card-foreground: #6c757d;
+  --color-card-foreground: #0F1E3A;
 
   --color-popover: #ffffff;
-  --color-popover-foreground: #6c757d;
+  --color-popover-foreground: #0F1E3A;
 
-  --color-primary: #1e5aa6; /* Primary Blue */
+  --color-primary: #0F1E3A; /* Navy Blue */
   --color-primary-foreground: #ffffff;
 
-  --color-secondary: #f8f9fa; /* Light Gray */
-  --color-secondary-foreground: #6c757d;
+  --color-secondary: #F8F9FB; /* Light Gray */
+  --color-secondary-foreground: #0F1E3A;
 
-  --color-muted: #f8f9fa;
-  --color-muted-foreground: #6c757d;
+  --color-muted: #F1F3F5;
+  --color-muted-foreground: #64748B;
 
-  --color-accent: #e93c92; /* Accent Pink */
+  --color-accent: #2F6EF3; /* Accent Blue */
   --color-accent-foreground: #ffffff;
 
   --color-destructive: #ef4444;
   --color-destructive-foreground: #fafafa;
 
-  --color-border: #e5e5e5;
-  --color-input: #e5e5e5;
-  --color-ring: #1e5aa6;
+  --color-border: #E2E8F0;
+  --color-input: #F1F5F9;
+  --color-ring: #2F6EF3;
 
-  --color-chart-1: #e67e22;
-  --color-chart-2: #2d8659;
-  --color-chart-3: #1e3a5f;
-  --color-chart-4: #f1c40f;
-  --color-chart-5: #e74c3c;
+  --color-chart-1: #2F6EF3;
+  --color-chart-2: #0F1E3A;
+  --color-chart-3: #64748B;
+  --color-chart-4: #F1F3F5;
+  --color-chart-5: #E2E8F0;
 
-  --color-success: #28a745; /* Success Blue */
-  --color-footer: #2c3e50; /* Footer Dark */
-  --color-footer-foreground: #ffffff;
-
-  --radius-lg: 0.5rem;
-  --radius-md: calc(0.5rem - 2px);
-  --radius-sm: calc(0.5rem - 4px);
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-info: #2F6EF3;
+  
+  --radius-lg: 0.75rem;
+  --radius-md: 0.5rem;
+  --radius-sm: 0.25rem;
 
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
@@ -67,18 +68,10 @@
     }
   }
 
-  --font-display: "Inter", sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
   --font-body: "Inter", sans-serif;
 }
 
-/*
-  The default border color has changed to `currentColor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
 @layer base {
   *,
   ::after,
@@ -86,12 +79,6 @@
   ::backdrop,
   ::file-selector-button {
     border-color: var(--color-border);
-  }
-}
-
-@layer utilities {
-  body {
-    font-family: var(--font-body);
   }
 }
 
@@ -124,11 +111,9 @@
     --radius: var(--radius-lg);
 
     --success: var(--color-success);
-    --footer: var(--color-footer);
-    --footer-foreground: var(--color-footer-foreground);
+    --warning: var(--color-warning);
+    --info: var(--color-info);
   }
-
-  /* No dark theme detected, so no dark mode styles are generated */
 
   * {
     border-color: var(--border);
@@ -137,86 +122,100 @@
   body {
     background-color: var(--background);
     color: var(--foreground);
+    font-family: var(--font-body);
     line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
     color: var(--primary);
     line-height: 1.2;
-  }
-
-  h1 {
-    font-size: 48px;
     font-weight: 700;
   }
 
+  h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+  }
+
   h2 {
-    font-size: 36px;
-    font-weight: 600;
-    line-height: 1.3;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
   }
 
   h3 {
-    font-size: 24px;
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
     font-weight: 600;
-    line-height: 1.4;
+  }
+
+  h4 {
+    font-size: 1.5rem;
+    font-weight: 600;
   }
 
   p {
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 400;
+    color: var(--muted-foreground);
   }
 
-  a {
-    color: var(--primary);
-    text-decoration: none;
+  .text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
   }
 
-  a:hover {
-    color: var(--accent);
+  .glassmorphism {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
   }
 
-  .btn {
-    background-color: var(--accent);
-    color: var(--accent-foreground);
-    padding: 15px 30px;
-    border-radius: 4px;
-    font-size: 14px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    box-shadow: 0 2px 10px rgba(233,60,146,0.3);
-    transition: background-color 0.3s ease, transform 0.3s ease;
+  .glassmorphism-dark {
+    background: rgba(15, 30, 58, 0.25);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(47, 110, 243, 0.18);
   }
 
-  .btn:hover {
-    background-color: #d62d7e; /* Darker shade of pink */
+  .gradient-primary {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  }
+
+  .gradient-secondary {
+    background: linear-gradient(135deg, #F8F9FB 0%, #E2E8F0 100%);
+  }
+
+  .card-shadow {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  .card-shadow-lg {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .hover-lift:hover {
     transform: translateY(-2px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
   }
+}
 
-  .card {
-    background-color: var(--card);
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    transition: transform 0.3s ease;
-  }
+.container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
 
-  .card:hover {
-    transform: translateY(-2px);
-  }
-
+@media (min-width: 640px) {
   .container {
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  section {
-    padding-top: 80px;
-    padding-bottom: 80px;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 }
 

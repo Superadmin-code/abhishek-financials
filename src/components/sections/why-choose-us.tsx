@@ -1,74 +1,108 @@
 import React from 'react';
-import { Users, Trophy, Calculator, type LucideIcon } from 'lucide-react';
+import { Eye, Zap, Heart, type LucideIcon } from 'lucide-react';
 
 interface FeatureCardProps {
   icon: LucideIcon;
   title: string;
   description: string;
-  buttonText: string;
-  buttonLink: string;
+  features: string[];
 }
 
-const features: FeatureCardProps[] = [
+const trustFactors: FeatureCardProps[] = [
   {
-    icon: Users,
-    title: 'Dedicated Specialists',
-    description: 'Our dedicated specialists offer expert support and guidance every step of the way.',
-    buttonText: 'MEET THE TEAM',
-    buttonLink: '#',
+    icon: Eye,
+    title: 'Transparent',
+    description: 'Complete transparency in our processes with no hidden fees or surprises. You know exactly what you are getting.',
+    features: ['No Hidden Charges', 'Clear Terms & Conditions', 'Upfront Pricing', 'Real-time Updates']
   },
   {
-    icon: Trophy,
-    title: 'Success Stories Rating',
-    description: 'Our high success stories rating shows the trust and satisfaction of our happy customers.',
-    buttonText: 'VIEW CLIENT REVIEW',
-    buttonLink: '#',
+    icon: Zap,
+    title: 'Fast',
+    description: 'Lightning-fast approvals and processing. Get your loan approved in as little as 24 hours with minimal paperwork.',
+    features: ['24 Hour Approval', 'Digital Documentation', 'Quick Disbursement', 'Instant Pre-approval']
   },
   {
-    icon: Calculator,
-    title: 'No front Appraisal Fees!',
-    description: 'Enjoy zero upfront appraisal fees! No hidden charges, just a simple and fair process.',
-    buttonText: 'WHY CHOOSE US',
-    buttonLink: '#',
-  },
+    icon: Heart,
+    title: 'Human',
+    description: 'Personal touch with dedicated relationship managers who understand your unique financial needs and goals.',
+    features: ['Dedicated Manager', 'Personalized Service', '24/7 Support', 'Expert Guidance']
+  }
 ];
 
-const FeatureCard: React.FC<FeatureCardProps & { isLast: boolean }> = ({ icon: Icon, title, description, buttonText, buttonLink, isLast }) => (
-  <div
-    className={`flex flex-col items-center p-12 text-center ${
-      !isLast ? 'md:border-r md:border-border' : ''
-    }`}
-  >
-    <Icon className="w-16 h-16 mb-5 text-primary" strokeWidth={1.5} />
-    <h3 className="flex items-center justify-center h-20 mb-4 text-2xl font-semibold text-primary">
-      {title}
-    </h3>
-    <p className="flex-grow mb-8 leading-relaxed text-foreground">{description}</p>
-    <a
-      href={buttonLink}
-      className="inline-block px-8 py-3 mt-auto text-sm font-medium tracking-wider text-center uppercase transition-colors duration-300 border rounded-sm border-border text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary"
-    >
-      {buttonText}
-    </a>
+const FeatureCard: React.FC<FeatureCardProps> = ({ icon: Icon, title, description, features }) => (
+  <div className="group relative bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white/20 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 ease-out">
+    {/* Gradient Overlay */}
+    <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+    
+    {/* Content */}
+    <div className="relative z-10 text-center space-y-6">
+      {/* Icon */}
+      <div className="w-20 h-20 bg-gradient-to-br from-accent to-primary rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300">
+        <Icon className="w-10 h-10 text-white" strokeWidth={1.5} />
+      </div>
+
+      {/* Title */}
+      <h3 className="text-2xl font-bold text-primary group-hover:text-accent transition-colors duration-300">
+        {title}
+      </h3>
+
+      {/* Description */}
+      <p className="text-muted-foreground leading-relaxed">
+        {description}
+      </p>
+
+      {/* Features List */}
+      <div className="space-y-2">
+        {features.map((feature, index) => (
+          <div key={index} className="flex items-center justify-center space-x-2 text-sm text-primary">
+            <div className="w-1.5 h-1.5 bg-accent rounded-full"></div>
+            <span>{feature}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    {/* Glassmorphism effect border */}
+    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
   </div>
 );
 
 const WhyChooseUs = () => {
   return (
-    <section className="py-20 bg-secondary">
-      <div className="container px-4 mx-auto">
-        <div className="mb-16 text-center">
-          <h2 className="text-4xl font-semibold text-primary">Why People Choose Us</h2>
-          <p className="max-w-2xl mx-auto mt-4 text-foreground">
-            People choose us for fast service, easy process, and trusted support every step of the way.
+    <section id="why-us" className="py-20 px-4 bg-gradient-to-br from-slate-50 via-white to-blue-50">
+      <div className="container mx-auto max-w-7xl">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl lg:text-5xl font-bold text-primary mb-4">
+            Why Choose AGFineserve?
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            We built our foundation on three core principles that make us the trusted choice for thousands of customers.
           </p>
         </div>
 
-        <div className="bg-card shadow-[0_4px_20px_rgba(0,0,0,0.08)] rounded-lg">
-          <div className="grid grid-cols-1 md:grid-cols-3">
-            {features.map((feature, index) => (
-              <FeatureCard key={feature.title} {...feature} isLast={index === features.length - 1} />
-            ))}
+        {/* Trust Factor Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          {trustFactors.map((factor) => (
+            <FeatureCard key={factor.title} {...factor} />
+          ))}
+        </div>
+
+        {/* Bottom Stats */}
+        <div className="text-center">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div className="space-y-2">
+              <div className="text-3xl font-bold text-primary">10,000+</div>
+              <div className="text-muted-foreground">Happy Customers</div>
+            </div>
+            <div className="space-y-2">
+              <div className="text-3xl font-bold text-primary">₹500Cr+</div>
+              <div className="text-muted-foreground">Loans Disbursed</div>
+            </div>
+            <div className="space-y-2">
+              <div className="text-3xl font-bold text-primary">4.9/5</div>
+              <div className="text-muted-foreground">Customer Rating</div>
+            </div>
           </div>
         </div>
       </div>
