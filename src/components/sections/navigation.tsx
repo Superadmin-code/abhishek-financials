@@ -50,15 +50,6 @@ const navItems: NavItem[] = [
     ]
   },
   {
-    label: "INSURANCE",
-    href: "#",
-    subItems: [
-      { label: "Life Insurance", href: "/life-insurance" },
-      { label: "Health Insurance", href: "/health-insurance" },
-      { label: "Vehicle Insurance", href: "/vehicle-insurance" }
-    ]
-  },
-  {
     label: "ABOUT US",
     href: "#",
     subItems: [
