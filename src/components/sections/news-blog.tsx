@@ -5,20 +5,20 @@ import Link from 'next/link';
 const newsData = [
   {
     id: 1,
-    image: 'https://rvfinserve.in/wp-content/uploads/2024/05/blog-pic-3.jpg',
-    title: "ITC Cannot Be Denied for Supplier's GSTIN Error: Delhi High Court Ruling",
-    date: 'MARCH 31, 2025',
-    author: 'YOGESH PATIL',
-    excerpt: 'Judicial Update: ITC Cannot Be Denied Due to Supplier’s Mistake Introduction A recent judgment...',
+    image: 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/project-uploads/f545d951-a949-4c13-9eac-3c8cdaf207bc/generated_images/professional-financial-blog-cover-image--6c08d34c-20250905164014.jpg?',
+    title: "Understanding Personal Loan Interest Rates: A Complete Guide",
+    date: 'SEPTEMBER 4, 2025',
+    author: 'ABHISHEK SHARMA',
+    excerpt: 'Learn everything about personal loan interest rates, factors affecting them, and how to secure the best rates for your financial needs...',
     url: '#',
   },
   {
     id: 2,
-    image: 'https://rvfinserve.in/wp-content/uploads/2024/05/blog-pic-1.jpg',
-    title: "ITC Cannot Be Denied for Supplier's GSTIN Error: Delhi High Court Ruling",
-    date: 'DECEMBER 14, 2016',
-    author: 'PANKAJNEMADE1978',
-    excerpt: 'Judicial Update: ITC Cannot Be Denied Due to Supplier’s Mistake Introduction A recent judgment...',
+    image: 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/project-uploads/f545d951-a949-4c13-9eac-3c8cdaf207bc/generated_images/professional-financial-services-blog-cov-b4327e36-20250905164025.jpg?',
+    title: "Home Loan Pre-Approval: Benefits and Process Explained",
+    date: 'AUGUST 28, 2025',
+    author: 'PRIYA PATEL',
+    excerpt: 'Discover the advantages of home loan pre-approval and step-by-step process to get pre-approved for your dream home purchase...',
     url: '#',
   },
 ];
@@ -29,23 +29,24 @@ const NewsBlog = () => {
       <div className="container mx-auto px-5">
         <div className="text-center mb-16 max-w-3xl mx-auto">
           <h2 className="text-4xl font-semibold text-primary">
-            Latest News from Loan Company
+            Latest Financial Insights & News
           </h2>
           <p className="text-foreground mt-4 text-base">
-            Our mission is to deliver reliable, latest news and opinions.
+            Stay updated with the latest trends, tips, and expert advice in finance and lending.
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {newsData.map((article) => (
-            <div key={article.id} className="card bg-card rounded-lg shadow-lg overflow-hidden transition-transform duration-300 ease-in-out hover:-translate-y-[2px]">
+            <div key={article.id} className="card bg-card rounded-lg shadow-lg overflow-hidden transition-transform duration-300 ease-in-out hover:-translate-y-[2px] hover-lift">
               <Link href={article.url}>
-                <div className="relative h-64 w-full">
+                <div className="relative h-64 w-full overflow-hidden">
                   <Image
                     src={article.image}
                     alt={article.title}
                     layout="fill"
                     objectFit="cover"
+                    className="transition-transform duration-300 hover:scale-105"
                   />
                 </div>
               </Link>
