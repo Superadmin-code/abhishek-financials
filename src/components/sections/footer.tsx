@@ -77,32 +77,34 @@ const Footer = () => {
     visible: {
       opacity: 1,
       transition: {
-        duration: 0.8,
-        staggerChildren: 0.1,
+        duration: 1,
+        ease: [0.23, 1, 0.32, 1], // Butter smooth easing
+        staggerChildren: 0.08,
       }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 40, scale: 0.95 },
     visible: { 
       opacity: 1, 
       y: 0,
+      scale: 1,
       transition: {
-        duration: 0.6,
-        ease: "easeOut"
+        duration: 0.8,
+        ease: [0.23, 1, 0.32, 1] // Butter smooth easing
       }
     }
   };
 
   const linkVariants = {
-    hidden: { opacity: 0, x: -20 },
+    hidden: { opacity: 0, x: -30 },
     visible: { 
       opacity: 1, 
       x: 0,
       transition: {
-        duration: 0.4,
-        ease: "easeOut"
+        duration: 0.6,
+        ease: [0.23, 1, 0.32, 1] // Butter smooth easing
       }
     }
   };
@@ -114,26 +116,26 @@ const Footer = () => {
         <motion.div
           animate={{
             rotate: [0, 360],
-            scale: [1, 1.2, 1],
-            opacity: [0.1, 0.2, 0.1]
+            scale: [1, 1.3, 1],
+            opacity: [0.1, 0.25, 0.1]
           }}
           transition={{
-            duration: 40,
+            duration: 45,
             repeat: Infinity,
-            ease: "linear"
+            ease: [0.25, 0.46, 0.45, 0.94] // Smooth easing
           }}
           className="absolute top-10 right-10 w-96 h-96 bg-accent/20 rounded-full blur-3xl"
         />
         <motion.div
           animate={{
             rotate: [360, 0],
-            scale: [1.1, 1.3, 1.1],
-            opacity: [0.05, 0.15, 0.05]
+            scale: [1.2, 1.4, 1.2],
+            opacity: [0.05, 0.2, 0.05]
           }}
           transition={{
-            duration: 35,
+            duration: 40,
             repeat: Infinity,
-            ease: "linear"
+            ease: [0.25, 0.46, 0.45, 0.94] // Smooth easing
           }}
           className="absolute bottom-20 left-20 w-80 h-80 bg-white/10 rounded-full blur-3xl"
         />
@@ -141,14 +143,14 @@ const Footer = () => {
         {/* Floating icons */}
         <motion.div
           animate={{
-            x: [0, 50, -50, 0],
-            y: [0, -30, 30, 0],
+            x: [0, 60, -60, 0],
+            y: [0, -35, 35, 0],
             rotate: [0, 180, 360],
           }}
           transition={{
-            duration: 25,
+            duration: 30,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: [0.25, 0.46, 0.45, 0.94]
           }}
           className="absolute top-1/4 left-1/4"
         >
@@ -156,14 +158,14 @@ const Footer = () => {
         </motion.div>
         <motion.div
           animate={{
-            x: [0, -40, 40, 0],
-            y: [0, 40, -40, 0],
+            x: [0, -50, 50, 0],
+            y: [0, 50, -50, 0],
             rotate: [360, 180, 0],
           }}
           transition={{
-            duration: 30,
+            duration: 35,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: [0.25, 0.46, 0.45, 0.94]
           }}
           className="absolute bottom-1/3 right-1/3"
         >
@@ -187,17 +189,19 @@ const Footer = () => {
             >
               <motion.div 
                 className="flex items-center space-x-3 mb-6"
-                whileHover={{ scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 400 }}
+                whileHover={{ 
+                  scale: 1.03,
+                  transition: { type: "spring", stiffness: 400, damping: 25 }
+                }}
               >
                 <div className="relative">
                   <motion.div
                     animate={{ 
                       rotate: [0, 360],
-                      scale: [1, 1.1, 1]
+                      scale: [1, 1.15, 1]
                     }}
                     transition={{ 
-                      duration: 8,
+                      duration: 10,
                       repeat: Infinity,
                       ease: "linear"
                     }}
@@ -207,13 +211,13 @@ const Footer = () => {
                   <motion.div 
                     className="absolute inset-0 bg-accent/20 rounded-full blur-sm"
                     animate={{ 
-                      opacity: [0.3, 0.6, 0.3],
-                      scale: [1, 1.3, 1]
+                      opacity: [0.3, 0.7, 0.3],
+                      scale: [1, 1.4, 1]
                     }}
                     transition={{ 
-                      duration: 3,
+                      duration: 4,
                       repeat: Infinity,
-                      ease: "easeInOut"
+                      ease: [0.25, 0.46, 0.45, 0.94]
                     }}
                   />
                 </div>
@@ -227,9 +231,13 @@ const Footer = () => {
               
               <motion.p 
                 className="text-white/80 mb-6 leading-relaxed"
-                initial={{ opacity: 0 }}
-                animate={inView ? { opacity: 1 } : {}}
-                transition={{ delay: 0.3, duration: 0.6 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ 
+                  delay: 0.3, 
+                  duration: 0.8,
+                  ease: [0.23, 1, 0.32, 1]
+                }}
               >
                 Making your financial dreams come true with personalized loan solutions, competitive rates, and exceptional customer service. Your trusted partner in achieving financial goals.
               </motion.p>
@@ -238,21 +246,30 @@ const Footer = () => {
               <div className="space-y-3">
                 <motion.div 
                   className="flex items-center space-x-3 text-white/80 hover:text-accent transition-colors duration-300"
-                  whileHover={{ x: 5 }}
+                  whileHover={{ 
+                    x: 8,
+                    transition: { type: "spring", stiffness: 400, damping: 25 }
+                  }}
                 >
                   <Phone className="w-5 h-5" />
                   <span>+91 98765 43210</span>
                 </motion.div>
                 <motion.div 
                   className="flex items-center space-x-3 text-white/80 hover:text-accent transition-colors duration-300"
-                  whileHover={{ x: 5 }}
+                  whileHover={{ 
+                    x: 8,
+                    transition: { type: "spring", stiffness: 400, damping: 25 }
+                  }}
                 >
                   <Mail className="w-5 h-5" />
                   <span>support@abhishekfinance.com</span>
                 </motion.div>
                 <motion.div 
                   className="flex items-center space-x-3 text-white/80 hover:text-accent transition-colors duration-300"
-                  whileHover={{ x: 5 }}
+                  whileHover={{ 
+                    x: 8,
+                    transition: { type: "spring", stiffness: 400, damping: 25 }
+                  }}
                 >
                   <MapPin className="w-5 h-5" />
                   <span>Multiple locations across India</span>
@@ -269,16 +286,24 @@ const Footer = () => {
               >
                 <motion.h4 
                   className="text-xl font-semibold text-white mb-6 relative"
-                  initial={{ opacity: 0, y: -10 }}
+                  initial={{ opacity: 0, y: -15 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.4 + sectionIndex * 0.1, duration: 0.5 }}
+                  transition={{ 
+                    delay: 0.4 + sectionIndex * 0.08, 
+                    duration: 0.6,
+                    ease: [0.23, 1, 0.32, 1]
+                  }}
                 >
                   {section.title}
                   <motion.div 
                     className="absolute bottom-0 left-0 h-0.5 bg-accent"
                     initial={{ width: 0 }}
-                    animate={inView ? { width: "50%" } : {}}
-                    transition={{ delay: 0.6 + sectionIndex * 0.1, duration: 0.8 }}
+                    animate={inView ? { width: "60%" } : {}}
+                    transition={{ 
+                      delay: 0.6 + sectionIndex * 0.08, 
+                      duration: 1,
+                      ease: [0.23, 1, 0.32, 1]
+                    }}
                   />
                 </motion.h4>
                 <ul className="space-y-3">
@@ -288,18 +313,27 @@ const Footer = () => {
                       variants={linkVariants}
                       initial="hidden"
                       animate={inView ? "visible" : "hidden"}
-                      transition={{ delay: 0.5 + sectionIndex * 0.1 + linkIndex * 0.05 }}
+                      transition={{ 
+                        delay: 0.5 + sectionIndex * 0.08 + linkIndex * 0.03,
+                        ease: [0.23, 1, 0.32, 1]
+                      }}
                     >
                       <motion.a
                         href={link.href}
                         className="text-white/70 hover:text-accent transition-colors duration-300 flex items-center group"
-                        whileHover={{ x: 5 }}
+                        whileHover={{ 
+                          x: 8,
+                          transition: { type: "spring", stiffness: 400, damping: 25 }
+                        }}
                       >
                         <span>{link.name}</span>
                         <motion.div
                           className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                          initial={{ x: -10 }}
-                          whileHover={{ x: 0 }}
+                          initial={{ x: -15 }}
+                          whileHover={{ 
+                            x: 0,
+                            transition: { type: "spring", stiffness: 400, damping: 25 }
+                          }}
                         >
                           <ArrowRight className="w-3 h-3" />
                         </motion.div>
@@ -314,9 +348,13 @@ const Footer = () => {
           {/* Trust Badges */}
           <motion.div 
             className="mt-16 pt-8 border-t border-white/20"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 40 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 1.0, duration: 0.6 }}
+            transition={{ 
+              delay: 1.2, 
+              duration: 0.8,
+              ease: [0.23, 1, 0.32, 1]
+            }}
           >
             <h4 className="text-xl font-semibold text-white mb-6 text-center">
               Trusted & Secure Platform
@@ -326,24 +364,32 @@ const Footer = () => {
                 <motion.div
                   key={badge.text}
                   className="flex items-center justify-center space-x-3 bg-white/10 rounded-xl p-4 hover:bg-white/20 transition-all duration-300"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={inView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ delay: 1.2 + index * 0.1, duration: 0.4 }}
+                  initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                  animate={inView ? { opacity: 1, scale: 1, y: 0 } : {}}
+                  transition={{ 
+                    delay: 1.4 + index * 0.08, 
+                    duration: 0.6,
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 25
+                  }}
                   whileHover={{ 
-                    scale: 1.05,
-                    backgroundColor: "rgba(255, 255, 255, 0.25)"
+                    scale: 1.08,
+                    y: -3,
+                    backgroundColor: "rgba(255, 255, 255, 0.25)",
+                    transition: { type: "spring", stiffness: 400, damping: 25 }
                   }}
                 >
                   <motion.div
                     animate={{ 
-                      rotate: [0, 10, -10, 0],
-                      scale: [1, 1.1, 1]
+                      rotate: [0, 12, -12, 0],
+                      scale: [1, 1.15, 1]
                     }}
                     transition={{
-                      duration: 3,
+                      duration: 4,
                       repeat: Infinity,
-                      ease: "easeInOut",
-                      delay: index * 0.5
+                      ease: [0.25, 0.46, 0.45, 0.94],
+                      delay: index * 0.3
                     }}
                   >
                     <badge.icon className={`w-6 h-6 ${badge.color}`} />
@@ -362,9 +408,13 @@ const Footer = () => {
           <div className="container mx-auto px-4 py-6">
             <motion.div 
               className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 1.4, duration: 0.6 }}
+              transition={{ 
+                delay: 1.6, 
+                duration: 0.8,
+                ease: [0.23, 1, 0.32, 1]
+              }}
             >
               <div className="text-center md:text-left">
                 <p className="text-white/80 text-sm">
@@ -383,13 +433,20 @@ const Footer = () => {
                     key={index}
                     href={social.href}
                     className={`w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-white/70 hover:bg-white/20 transition-all duration-300 ${social.color}`}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={inView ? { opacity: 1, scale: 1 } : {}}
-                    transition={{ delay: 1.6 + index * 0.1, duration: 0.4 }}
+                    initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                    animate={inView ? { opacity: 1, scale: 1, y: 0 } : {}}
+                    transition={{ 
+                      delay: 1.8 + index * 0.06, 
+                      duration: 0.5,
+                      type: "spring",
+                      stiffness: 400,
+                      damping: 25
+                    }}
                     whileHover={{ 
-                      scale: 1.1,
-                      y: -2,
-                      backgroundColor: "rgba(255, 255, 255, 0.25)"
+                      scale: 1.15,
+                      y: -3,
+                      backgroundColor: "rgba(255, 255, 255, 0.25)",
+                      transition: { type: "spring", stiffness: 400, damping: 25 }
                     }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -402,9 +459,13 @@ const Footer = () => {
             {/* Disclaimer */}
             <motion.div 
               className="mt-6 pt-4 border-t border-white/10"
-              initial={{ opacity: 0 }}
-              animate={inView ? { opacity: 1 } : {}}
-              transition={{ delay: 1.8, duration: 0.6 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ 
+                delay: 2, 
+                duration: 0.8,
+                ease: [0.23, 1, 0.32, 1]
+              }}
             >
               <p className="text-white/50 text-xs text-center leading-relaxed">
                 *Terms and conditions apply. All loan products are subject to credit approval. Interest rates and processing fees may vary based on individual credit profile. 

@@ -40,8 +40,9 @@ const Testimonials = () => {
     visible: {
       opacity: 1,
       transition: {
-        duration: 0.6,
-        staggerChildren: 0.2,
+        duration: 0.8,
+        ease: [0.23, 1, 0.32, 1], // Butter smooth easing
+        staggerChildren: 0.12,
       }
     }
   };
@@ -49,44 +50,48 @@ const Testimonials = () => {
   const cardVariants = {
     hidden: { 
       opacity: 0, 
-      y: 50,
-      scale: 0.9
+      y: 60,
+      scale: 0.9,
+      rotateX: -15
     },
     visible: { 
       opacity: 1, 
       y: 0,
       scale: 1,
+      rotateX: 0,
       transition: {
-        duration: 0.6,
-        ease: "easeOut"
+        duration: 0.9,
+        ease: [0.23, 1, 0.32, 1] // Butter smooth easing
       }
     }
   };
 
   const quoteVariants = {
-    hidden: { scale: 0, rotate: -180 },
+    hidden: { scale: 0, rotate: -180, opacity: 0 },
     visible: { 
       scale: 1, 
       rotate: 0,
+      opacity: 1,
       transition: {
         type: "spring",
         stiffness: 200,
-        damping: 15,
-        delay: 0.3
+        damping: 20,
+        delay: 0.4
       }
     }
   };
 
   const starVariants = {
-    hidden: { scale: 0, opacity: 0 },
+    hidden: { scale: 0, opacity: 0, y: -10 },
     visible: (i: number) => ({
       scale: 1,
       opacity: 1,
+      y: 0,
       transition: {
-        delay: 0.5 + i * 0.1,
+        delay: 0.6 + i * 0.08,
         type: "spring",
-        stiffness: 300,
-        damping: 20
+        stiffness: 400,
+        damping: 25
       }
     })
   };
@@ -98,24 +103,24 @@ const Testimonials = () => {
         <motion.div
           animate={{
             rotate: [0, 360],
-            scale: [1, 1.2, 1],
+            scale: [1, 1.3, 1],
           }}
           transition={{
-            duration: 20,
+            duration: 25,
             repeat: Infinity,
-            ease: "linear"
+            ease: [0.25, 0.46, 0.45, 0.94] // Smooth easing
           }}
           className="absolute top-20 right-20 w-32 h-32 bg-accent/5 rounded-full blur-xl"
         />
         <motion.div
           animate={{
             rotate: [360, 0],
-            scale: [1.2, 1, 1.2],
+            scale: [1.3, 1, 1.3],
           }}
           transition={{
-            duration: 25,
+            duration: 30,
             repeat: Infinity,
-            ease: "linear"
+            ease: [0.25, 0.46, 0.45, 0.94] // Smooth easing
           }}
           className="absolute bottom-20 left-20 w-40 h-40 bg-primary/5 rounded-full blur-xl"
         />
@@ -124,17 +129,20 @@ const Testimonials = () => {
       <div className="container mx-auto px-4 relative z-10" ref={ref}>
         <motion.div 
           className="text-center mb-16"
-          initial={{ opacity: 0, y: -30 }}
+          initial={{ opacity: 0, y: -40 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ 
+            duration: 1,
+            ease: [0.23, 1, 0.32, 1]
+          }}
         >
           <motion.div
-            initial={{ scale: 0, rotate: -45 }}
-            animate={inView ? { scale: 1, rotate: 0 } : {}}
+            initial={{ scale: 0, rotate: -45, opacity: 0 }}
+            animate={inView ? { scale: 1, rotate: 0, opacity: 1 } : {}}
             transition={{ 
               type: "spring", 
               stiffness: 200, 
-              damping: 15,
+              damping: 20,
               delay: 0.2 
             }}
             className="inline-flex items-center justify-center w-16 h-16 bg-accent/10 rounded-full mb-6"
@@ -144,18 +152,26 @@ const Testimonials = () => {
           
           <motion.h2 
             className="text-4xl md:text-5xl font-bold text-primary mb-4"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={inView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={inView ? { opacity: 1, scale: 1, y: 0 } : {}}
+            transition={{ 
+              duration: 0.8, 
+              delay: 0.3,
+              ease: [0.175, 0.885, 0.32, 1.275] // Elastic easing
+            }}
           >
             What Our Clients Say
           </motion.h2>
           
           <motion.p 
             className="text-xl text-muted-foreground max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 25 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ 
+              duration: 0.7, 
+              delay: 0.4,
+              ease: [0.23, 1, 0.32, 1]
+            }}
           >
             Real stories from satisfied customers who achieved their financial goals with us
           </motion.p>
@@ -173,20 +189,25 @@ const Testimonials = () => {
               variants={cardVariants}
               className="group relative"
               whileHover={{ 
-                y: -10,
-                transition: { duration: 0.3, ease: "easeOut" }
+                y: -15,
+                scale: 1.02,
+                transition: { 
+                  type: "spring", 
+                  stiffness: 400, 
+                  damping: 25 
+                }
               }}
             >
               {/* Glowing background effect */}
               <motion.div 
                 className="absolute inset-0 bg-gradient-to-br from-accent/20 to-primary/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                 animate={{
-                  scale: [1, 1.05, 1],
+                  scale: [1, 1.08, 1],
                 }}
                 transition={{
-                  duration: 4,
+                  duration: 5,
                   repeat: Infinity,
-                  ease: "easeInOut"
+                  ease: [0.25, 0.46, 0.45, 0.94]
                 }}
               />
 
@@ -197,8 +218,12 @@ const Testimonials = () => {
                   variants={quoteVariants}
                   whileHover={{ 
                     rotate: 360,
-                    scale: 1.2,
-                    transition: { duration: 0.5 }
+                    scale: 1.3,
+                    transition: { 
+                      type: "spring", 
+                      stiffness: 400, 
+                      damping: 20 
+                    }
                   }}
                 >
                   <Quote className="w-4 h-4 text-white" />
@@ -212,9 +237,13 @@ const Testimonials = () => {
                       variants={starVariants}
                       custom={i}
                       whileHover={{ 
-                        scale: 1.3, 
+                        scale: 1.4, 
                         rotate: 180,
-                        transition: { duration: 0.3 }
+                        transition: { 
+                          type: "spring", 
+                          stiffness: 500, 
+                          damping: 20 
+                        }
                       }}
                     >
                       <Star className="w-5 h-5 text-yellow-400 fill-current" />
@@ -225,9 +254,13 @@ const Testimonials = () => {
                 {/* Testimonial content */}
                 <motion.p 
                   className="text-gray-600 mb-6 leading-relaxed"
-                  initial={{ opacity: 0 }}
-                  animate={inView ? { opacity: 1 } : {}}
-                  transition={{ delay: 0.6 + index * 0.1, duration: 0.5 }}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ 
+                    delay: 0.8 + index * 0.1, 
+                    duration: 0.6,
+                    ease: [0.23, 1, 0.32, 1]
+                  }}
                 >
                   "{testimonial.content}"
                 </motion.p>
@@ -236,19 +269,22 @@ const Testimonials = () => {
                 <div className="flex items-center space-x-4">
                   <motion.div 
                     className="relative"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ type: "spring", stiffness: 300 }}
+                    whileHover={{ 
+                      scale: 1.15,
+                      transition: { type: "spring", stiffness: 400, damping: 25 }
+                    }}
                   >
                     <motion.img
                       src={testimonial.image}
                       alt={testimonial.name}
                       className="w-12 h-12 rounded-full object-cover border-2 border-accent/20"
-                      initial={{ scale: 0, rotate: -180 }}
-                      animate={inView ? { scale: 1, rotate: 0 } : {}}
+                      initial={{ scale: 0, rotate: -180, opacity: 0 }}
+                      animate={inView ? { scale: 1, rotate: 0, opacity: 1 } : {}}
                       transition={{ 
-                        delay: 0.8 + index * 0.1,
+                        delay: 1 + index * 0.1,
                         type: "spring",
-                        stiffness: 200
+                        stiffness: 200,
+                        damping: 20
                       }}
                     />
                     <motion.div 
@@ -257,7 +293,7 @@ const Testimonials = () => {
                         rotate: [0, 360],
                       }}
                       transition={{
-                        duration: 3,
+                        duration: 4,
                         repeat: Infinity,
                         ease: "linear"
                       }}
@@ -267,17 +303,25 @@ const Testimonials = () => {
                   <div>
                     <motion.h4 
                       className="font-semibold text-primary"
-                      initial={{ opacity: 0, x: -20 }}
+                      initial={{ opacity: 0, x: -25 }}
                       animate={inView ? { opacity: 1, x: 0 } : {}}
-                      transition={{ delay: 0.9 + index * 0.1, duration: 0.4 }}
+                      transition={{ 
+                        delay: 1.1 + index * 0.08, 
+                        duration: 0.5,
+                        ease: [0.23, 1, 0.32, 1]
+                      }}
                     >
                       {testimonial.name}
                     </motion.h4>
                     <motion.p 
                       className="text-sm text-muted-foreground"
-                      initial={{ opacity: 0, x: -20 }}
+                      initial={{ opacity: 0, x: -25 }}
                       animate={inView ? { opacity: 1, x: 0 } : {}}
-                      transition={{ delay: 1.0 + index * 0.1, duration: 0.4 }}
+                      transition={{ 
+                        delay: 1.2 + index * 0.08, 
+                        duration: 0.5,
+                        ease: [0.23, 1, 0.32, 1]
+                      }}
                     >
                       {testimonial.role}
                     </motion.p>
@@ -288,26 +332,26 @@ const Testimonials = () => {
                 <motion.div 
                   className="absolute top-4 right-4 w-2 h-2 bg-accent/30 rounded-full opacity-0 group-hover:opacity-100"
                   animate={{
-                    y: [0, -10, 0],
+                    y: [0, -12, 0],
                     opacity: inView ? [0.3, 0.8, 0.3] : 0,
                   }}
                   transition={{
-                    duration: 2,
+                    duration: 3,
                     repeat: Infinity,
-                    ease: "easeInOut"
+                    ease: [0.25, 0.46, 0.45, 0.94]
                   }}
                 />
                 <motion.div 
                   className="absolute bottom-4 left-4 w-1.5 h-1.5 bg-primary/30 rounded-full opacity-0 group-hover:opacity-100"
                   animate={{
-                    y: [0, 8, 0],
+                    y: [0, 10, 0],
                     opacity: inView ? [0.3, 0.6, 0.3] : 0,
                   }}
                   transition={{
-                    duration: 2.5,
+                    duration: 3.5,
                     repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 0.5
+                    ease: [0.25, 0.46, 0.45, 0.94],
+                    delay: 0.7
                   }}
                 />
               </div>
@@ -318,27 +362,43 @@ const Testimonials = () => {
         {/* Trust indicators */}
         <motion.div 
           className="text-center mt-16"
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 1.2, duration: 0.6 }}
+          transition={{ 
+            delay: 1.5, 
+            duration: 0.8,
+            ease: [0.23, 1, 0.32, 1]
+          }}
         >
           <div className="flex flex-wrap justify-center items-center gap-8 text-sm text-muted-foreground">
             <motion.div 
               className="flex items-center space-x-2"
-              whileHover={{ scale: 1.05, color: "var(--color-accent)" }}
+              whileHover={{ 
+                scale: 1.08, 
+                color: "var(--color-accent)",
+                transition: { type: "spring", stiffness: 400, damping: 25 }
+              }}
             >
               <Star className="w-4 h-4 text-yellow-400 fill-current" />
               <span>4.9/5 Average Rating</span>
             </motion.div>
             <div className="w-1 h-1 bg-muted-foreground rounded-full" />
             <motion.span
-              whileHover={{ scale: 1.05, color: "var(--color-accent)" }}
+              whileHover={{ 
+                scale: 1.08, 
+                color: "var(--color-accent)",
+                transition: { type: "spring", stiffness: 400, damping: 25 }
+              }}
             >
               500+ Happy Customers
             </motion.span>
             <div className="w-1 h-1 bg-muted-foreground rounded-full" />
             <motion.span
-              whileHover={{ scale: 1.05, color: "var(--color-accent)" }}
+              whileHover={{ 
+                scale: 1.08, 
+                color: "var(--color-accent)",
+                transition: { type: "spring", stiffness: 400, damping: 25 }
+              }}
             >
               99% Approval Rate
             </motion.span>

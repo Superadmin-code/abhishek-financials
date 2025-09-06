@@ -51,6 +51,12 @@
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
 
+  /* Buttery smooth animation curves */
+  --ease-butter: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --ease-elastic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
   @keyframes accordion-down {
     from {
       height: 0;
@@ -65,6 +71,39 @@
     }
     to {
       height: 0;
+    }
+  }
+
+  @keyframes smooth-fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes butter-slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes smooth-scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
     }
   }
 
@@ -119,6 +158,11 @@
     border-color: var(--border);
   }
 
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+  }
+
   body {
     background-color: var(--background);
     color: var(--foreground);
@@ -126,6 +170,7 @@
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -195,12 +240,54 @@
   }
 
   .hover-lift {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.4s var(--ease-butter), box-shadow 0.4s var(--ease-butter);
   }
 
   .hover-lift:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(47, 110, 243, 0.05);
+  }
+
+  /* Buttery smooth animations */
+  .animate-smooth-fade {
+    animation: smooth-fade-in 0.8s var(--ease-butter) forwards;
+  }
+
+  .animate-butter-slide {
+    animation: butter-slide-up 0.9s var(--ease-butter) forwards;
+  }
+
+  .animate-smooth-scale {
+    animation: smooth-scale-in 0.7s var(--ease-elastic) forwards;
+  }
+
+  /* Enhanced transitions */
+  .transition-butter {
+    transition: all 0.4s var(--ease-butter);
+  }
+
+  .transition-smooth {
+    transition: all 0.3s var(--ease-smooth);
+  }
+
+  .transition-bounce {
+    transition: all 0.5s var(--ease-bounce);
+  }
+
+  /* Improved button animations */
+  .btn-smooth {
+    transition: all 0.3s var(--ease-butter);
+    transform-origin: center;
+  }
+
+  .btn-smooth:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 12px 24px rgba(47, 110, 243, 0.25);
+  }
+
+  .btn-smooth:active {
+    transform: translateY(0) scale(0.98);
+    transition-duration: 0.1s;
   }
 }
 
@@ -217,6 +304,26 @@
     padding-left: 2rem;
     padding-right: 2rem;
   }
+}
+
+/* Smooth scroll for the entire page */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Performance optimizations */
+* {
+  will-change: auto;
+}
+
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
 }
 
 /* Hide Next.js error overlay portal */

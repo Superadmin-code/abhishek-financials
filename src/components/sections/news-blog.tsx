@@ -39,8 +39,9 @@ const NewsBlog = () => {
     visible: {
       opacity: 1,
       transition: {
-        duration: 0.8,
-        staggerChildren: 0.3,
+        duration: 1,
+        ease: [0.23, 1, 0.32, 1], // Butter smooth easing
+        staggerChildren: 0.2,
       }
     }
   };
@@ -48,9 +49,9 @@ const NewsBlog = () => {
   const cardVariants = {
     hidden: { 
       opacity: 0, 
-      y: 60,
+      y: 80,
       scale: 0.9,
-      rotateY: -15
+      rotateY: -20
     },
     visible: { 
       opacity: 1, 
@@ -58,20 +59,20 @@ const NewsBlog = () => {
       scale: 1,
       rotateY: 0,
       transition: {
-        duration: 0.8,
-        ease: "easeOut"
+        duration: 1,
+        ease: [0.23, 1, 0.32, 1] // Butter smooth easing
       }
     }
   };
 
   const imageVariants = {
-    hidden: { scale: 1.2, opacity: 0 },
+    hidden: { scale: 1.3, opacity: 0 },
     visible: { 
       scale: 1, 
       opacity: 1,
       transition: {
-        duration: 0.6,
-        ease: "easeOut"
+        duration: 0.8,
+        ease: [0.23, 1, 0.32, 1] // Butter smooth easing
       }
     }
   };
@@ -83,26 +84,26 @@ const NewsBlog = () => {
         <motion.div
           animate={{
             rotate: [0, 360],
-            scale: [1, 1.2, 1],
-            opacity: [0.1, 0.2, 0.1]
+            scale: [1, 1.3, 1],
+            opacity: [0.1, 0.25, 0.1]
           }}
           transition={{
-            duration: 25,
+            duration: 30,
             repeat: Infinity,
-            ease: "linear"
+            ease: [0.25, 0.46, 0.45, 0.94] // Smooth easing
           }}
           className="absolute top-20 right-20 w-80 h-80 bg-accent/10 rounded-full blur-3xl"
         />
         <motion.div
           animate={{
             rotate: [360, 0],
-            scale: [1.1, 1.3, 1.1],
-            opacity: [0.1, 0.15, 0.1]
+            scale: [1.2, 1.4, 1.2],
+            opacity: [0.1, 0.2, 0.1]
           }}
           transition={{
-            duration: 30,
+            duration: 35,
             repeat: Infinity,
-            ease: "linear"
+            ease: [0.25, 0.46, 0.45, 0.94] // Smooth easing
           }}
           className="absolute bottom-20 left-20 w-96 h-96 bg-primary/10 rounded-full blur-3xl"
         />
@@ -110,14 +111,14 @@ const NewsBlog = () => {
         {/* Floating content elements */}
         <motion.div
           animate={{
-            x: [0, 50, -50, 0],
-            y: [0, -30, 30, 0],
+            x: [0, 60, -60, 0],
+            y: [0, -35, 35, 0],
             rotate: [0, 90, 180, 270, 360],
           }}
           transition={{
-            duration: 20,
+            duration: 25,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: [0.25, 0.46, 0.45, 0.94]
           }}
           className="absolute top-1/3 right-1/4"
         >
@@ -125,14 +126,14 @@ const NewsBlog = () => {
         </motion.div>
         <motion.div
           animate={{
-            x: [0, -40, 40, 0],
-            y: [0, 40, -40, 0],
+            x: [0, -50, 50, 0],
+            y: [0, 50, -50, 0],
             rotate: [360, 270, 180, 90, 0],
           }}
           transition={{
-            duration: 25,
+            duration: 30,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: [0.25, 0.46, 0.45, 0.94]
           }}
           className="absolute bottom-1/3 left-1/4"
         >
@@ -143,17 +144,20 @@ const NewsBlog = () => {
       <div className="container mx-auto px-4 relative z-10" ref={ref}>
         <motion.div 
           className="text-center mb-16"
-          initial={{ opacity: 0, y: -50 }}
+          initial={{ opacity: 0, y: -60 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ 
+            duration: 1,
+            ease: [0.23, 1, 0.32, 1]
+          }}
         >
           <motion.div
-            initial={{ scale: 0, rotate: -180 }}
-            animate={inView ? { scale: 1, rotate: 0 } : {}}
+            initial={{ scale: 0, rotate: -180, opacity: 0 }}
+            animate={inView ? { scale: 1, rotate: 0, opacity: 1 } : {}}
             transition={{ 
               type: "spring", 
               stiffness: 200, 
-              damping: 15,
+              damping: 20,
               delay: 0.2 
             }}
             className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-accent/20 to-primary/20 rounded-full mb-6 relative"
@@ -166,7 +170,7 @@ const NewsBlog = () => {
                 scale: [1, 1.2, 1]
               }}
               transition={{
-                duration: 6,
+                duration: 7,
                 repeat: Infinity,
                 ease: "linear"
               }}
@@ -175,18 +179,26 @@ const NewsBlog = () => {
           
           <motion.h2 
             className="text-4xl md:text-5xl font-bold text-primary mb-4"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={inView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            initial={{ opacity: 0, scale: 0.8, y: 25 }}
+            animate={inView ? { opacity: 1, scale: 1, y: 0 } : {}}
+            transition={{ 
+              duration: 0.8, 
+              delay: 0.3,
+              ease: [0.175, 0.885, 0.32, 1.275] // Elastic easing
+            }}
           >
             Latest Financial Insights & News
           </motion.h2>
           
           <motion.p 
             className="text-xl text-muted-foreground max-w-3xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ 
+              duration: 0.7, 
+              delay: 0.4,
+              ease: [0.23, 1, 0.32, 1]
+            }}
           >
             Stay updated with the latest trends, tips, and insights from the world of finance to make informed decisions about your loans and investments.
           </motion.p>
@@ -204,21 +216,26 @@ const NewsBlog = () => {
               variants={cardVariants}
               className="group relative bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100"
               whileHover={{ 
-                y: -15,
-                transition: { duration: 0.4, ease: "easeOut" }
+                y: -20,
+                scale: 1.03,
+                transition: { 
+                  type: "spring", 
+                  stiffness: 400, 
+                  damping: 25 
+                }
               }}
             >
               {/* Glowing background effect */}
               <motion.div 
                 className="absolute inset-0 bg-gradient-to-br from-accent/10 to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                 animate={{
-                  scale: [1, 1.05, 1],
+                  scale: [1, 1.08, 1],
                 }}
                 transition={{
-                  duration: 4,
+                  duration: 5,
                   repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: index * 0.5
+                  ease: [0.25, 0.46, 0.45, 0.94],
+                  delay: index * 0.3
                 }}
               />
 
@@ -227,17 +244,26 @@ const NewsBlog = () => {
                 <motion.img
                   src={article.image}
                   alt={article.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-115"
                   variants={imageVariants}
                 />
                 
                 {/* Category badge */}
                 <motion.div 
                   className="absolute top-4 left-4 bg-accent text-white px-3 py-1 rounded-full text-sm font-medium"
-                  initial={{ opacity: 0, scale: 0.8, x: -20 }}
+                  initial={{ opacity: 0, scale: 0.8, x: -25 }}
                   animate={inView ? { opacity: 1, scale: 1, x: 0 } : {}}
-                  transition={{ delay: 0.6 + index * 0.2, duration: 0.4 }}
-                  whileHover={{ scale: 1.1 }}
+                  transition={{ 
+                    delay: 0.8 + index * 0.15, 
+                    duration: 0.5,
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 25
+                  }}
+                  whileHover={{ 
+                    scale: 1.15,
+                    transition: { type: "spring", stiffness: 500, damping: 20 }
+                  }}
                 >
                   {article.category}
                 </motion.div>
@@ -245,9 +271,15 @@ const NewsBlog = () => {
                 {/* Read time */}
                 <motion.div 
                   className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-primary px-3 py-1 rounded-full text-sm font-medium"
-                  initial={{ opacity: 0, scale: 0.8, x: 20 }}
+                  initial={{ opacity: 0, scale: 0.8, x: 25 }}
                   animate={inView ? { opacity: 1, scale: 1, x: 0 } : {}}
-                  transition={{ delay: 0.7 + index * 0.2, duration: 0.4 }}
+                  transition={{ 
+                    delay: 0.9 + index * 0.15, 
+                    duration: 0.5,
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 25
+                  }}
                 >
                   {article.readTime}
                 </motion.div>
@@ -260,18 +292,26 @@ const NewsBlog = () => {
               <div className="p-8 relative z-10">
                 <motion.h3 
                   className="text-2xl font-bold text-primary mb-4 group-hover:text-accent transition-colors duration-300 line-clamp-2"
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 25 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.8 + index * 0.2, duration: 0.5 }}
+                  transition={{ 
+                    delay: 1 + index * 0.15, 
+                    duration: 0.6,
+                    ease: [0.23, 1, 0.32, 1]
+                  }}
                 >
                   {article.title}
                 </motion.h3>
                 
                 <motion.p 
                   className="text-muted-foreground mb-6 leading-relaxed line-clamp-3"
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 25 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.9 + index * 0.2, duration: 0.5 }}
+                  transition={{ 
+                    delay: 1.1 + index * 0.15, 
+                    duration: 0.6,
+                    ease: [0.23, 1, 0.32, 1]
+                  }}
                 >
                   {article.excerpt}
                 </motion.p>
@@ -279,21 +319,33 @@ const NewsBlog = () => {
                 {/* Meta information */}
                 <motion.div 
                   className="flex items-center justify-between text-sm text-muted-foreground mb-6"
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 25 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 1.0 + index * 0.2, duration: 0.5 }}
+                  transition={{ 
+                    delay: 1.2 + index * 0.15, 
+                    duration: 0.6,
+                    ease: [0.23, 1, 0.32, 1]
+                  }}
                 >
                   <div className="flex items-center space-x-4">
                     <motion.div 
                       className="flex items-center space-x-1"
-                      whileHover={{ scale: 1.05, color: "var(--color-accent)" }}
+                      whileHover={{ 
+                        scale: 1.08, 
+                        color: "var(--color-accent)",
+                        transition: { type: "spring", stiffness: 400, damping: 25 }
+                      }}
                     >
                       <User className="w-4 h-4" />
                       <span>{article.author}</span>
                     </motion.div>
                     <motion.div 
                       className="flex items-center space-x-1"
-                      whileHover={{ scale: 1.05, color: "var(--color-accent)" }}
+                      whileHover={{ 
+                        scale: 1.08, 
+                        color: "var(--color-accent)",
+                        transition: { type: "spring", stiffness: 400, damping: 25 }
+                      }}
                     >
                       <Calendar className="w-4 h-4" />
                       <span>{article.date}</span>
@@ -303,22 +355,29 @@ const NewsBlog = () => {
 
                 {/* Read more button */}
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 25 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 1.1 + index * 0.2, duration: 0.5 }}
+                  transition={{ 
+                    delay: 1.3 + index * 0.15, 
+                    duration: 0.6,
+                    ease: [0.23, 1, 0.32, 1]
+                  }}
                 >
                   <motion.button
                     className="group/btn flex items-center space-x-2 text-accent font-semibold hover:text-primary transition-colors duration-300"
-                    whileHover={{ x: 5 }}
+                    whileHover={{ 
+                      x: 8,
+                      transition: { type: "spring", stiffness: 400, damping: 25 }
+                    }}
                     whileTap={{ scale: 0.95 }}
                   >
                     <span>Read More</span>
                     <motion.div
-                      animate={{ x: [0, 5, 0] }}
+                      animate={{ x: [0, 6, 0] }}
                       transition={{
-                        duration: 1.5,
+                        duration: 2,
                         repeat: Infinity,
-                        ease: "easeInOut"
+                        ease: [0.25, 0.46, 0.45, 0.94]
                       }}
                     >
                       <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
@@ -331,27 +390,27 @@ const NewsBlog = () => {
               <motion.div 
                 className="absolute top-8 right-8 w-3 h-3 bg-accent/30 rounded-full opacity-0 group-hover:opacity-100"
                 animate={{
-                  y: [0, -20, 0],
+                  y: [0, -25, 0],
                   opacity: inView ? [0.3, 0.7, 0.3] : 0,
                 }}
                 transition={{
-                  duration: 3,
+                  duration: 4,
                   repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: index * 0.5
+                  ease: [0.25, 0.46, 0.45, 0.94],
+                  delay: index * 0.3
                 }}
               />
               <motion.div 
                 className="absolute bottom-8 left-8 w-2 h-2 bg-primary/30 rounded-full opacity-0 group-hover:opacity-100"
                 animate={{
-                  y: [0, 15, 0],
+                  y: [0, 20, 0],
                   opacity: inView ? [0.3, 0.6, 0.3] : 0,
                 }}
                 transition={{
-                  duration: 2.5,
+                  duration: 3.5,
                   repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: (index * 0.5) + 1
+                  ease: [0.25, 0.46, 0.45, 0.94],
+                  delay: (index * 0.3) + 1.2
                 }}
               />
             </motion.article>
@@ -361,15 +420,21 @@ const NewsBlog = () => {
         {/* Call to action */}
         <motion.div 
           className="text-center mt-16"
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 50 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 1.5, duration: 0.6 }}
+          transition={{ 
+            delay: 1.8, 
+            duration: 0.8,
+            ease: [0.23, 1, 0.32, 1]
+          }}
         >
           <motion.button
             className="px-8 py-4 bg-gradient-to-r from-accent to-primary text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300"
             whileHover={{ 
-              scale: 1.05,
-              boxShadow: "0 20px 40px rgba(47, 110, 243, 0.3)"
+              scale: 1.08,
+              y: -3,
+              boxShadow: "0 25px 50px rgba(47, 110, 243, 0.4)",
+              transition: { type: "spring", stiffness: 400, damping: 25 }
             }}
             whileTap={{ scale: 0.95 }}
           >
