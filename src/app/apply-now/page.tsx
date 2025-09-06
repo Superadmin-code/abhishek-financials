@@ -13,7 +13,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Slider } from "@/components/ui/slider";
 import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
-import { Navigation } from "@/components/sections/navigation";
+import Navigation from "@/components/sections/navigation";
 import { 
   Home, 
   Building2, 
