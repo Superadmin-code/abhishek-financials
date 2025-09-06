@@ -209,7 +209,7 @@ const Navigation = () => {
             transition={{ delay: 0.6, duration: 0.5 }}
           >
             <motion.a
-              href="/apply"
+              href="/apply-now"
               className="px-6 py-2.5 bg-accent text-white text-sm font-semibold rounded-lg transition-all duration-200"
               whileHover={{ 
                 scale: 1.05,
@@ -321,7 +321,7 @@ const Navigation = () => {
                 ))}
                 <motion.div className="px-4 pt-4" variants={itemVariants}>
                   <motion.a
-                    href="/apply"
+                    href="/apply-now"
                     className="block w-full text-center px-6 py-2.5 bg-accent text-white text-sm font-semibold rounded-lg transition-colors duration-200"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
