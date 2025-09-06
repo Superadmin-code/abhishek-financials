@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/db';
 import { blogPosts } from '@/db/schema';
-import { eq, like, and, or, desc, asc } from 'drizzle-orm';
+import { eq, like, and, or, desc, asc, ne } from 'drizzle-orm';
 
 // Utility function to generate slug from title
 function generateSlug(title: string): string {
@@ -279,7 +279,7 @@ export async function PUT(request: NextRequest) {
         // Check if new slug already exists
         const existingSlug = await db.select()
           .from(blogPosts)
-          .where(and(eq(blogPosts.slug, newSlug), eq(blogPosts.id, parseInt(id), false)))
+          .where(and(eq(blogPosts.slug, newSlug), ne(blogPosts.id, parseInt(id))))
           .limit(1);
 
         let finalSlug = newSlug;
