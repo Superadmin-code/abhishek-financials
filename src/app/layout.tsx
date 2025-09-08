@@ -7,6 +7,20 @@ import Script from "next/script";
 export const metadata: Metadata = {
   title: "Abhishek Financial Solutions",
   description: "Your trusted partner for all financial needs - Home Loans, Business Loans, and more with competitive rates and quick approvals.",
+  icons: {
+    icon: [
+      {
+        url: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/project-uploads/f545d951-a949-4c13-9eac-3c8cdaf207bc/generated_images/favicon-version-of-af-logo---clean%2c-mi-bed7f7a3-20250908073717.jpg",
+        sizes: "any",
+      },
+    ],
+    apple: [
+      {
+        url: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/project-uploads/f545d951-a949-4c13-9eac-3c8cdaf207bc/generated_images/favicon-version-of-af-logo---clean%2c-mi-bed7f7a3-20250908073717.jpg",
+        sizes: "180x180",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({

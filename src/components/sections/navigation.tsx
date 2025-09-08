@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Menu, X, ChevronDown, Shield } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Navigation = () => {
@@ -84,32 +84,46 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <motion.div 
-            className="flex items-center space-x-2"
+            className="flex items-center space-x-3"
             whileHover={{ scale: 1.02 }}
             transition={{ type: "spring", stiffness: 400 }}
           >
             <div className="relative">
               <motion.div
+                className="relative w-10 h-10 rounded-lg overflow-hidden"
                 animate={{ 
-                  rotate: [0, 10, -10, 0],
-                  scale: [1, 1.1, 1]
+                  rotate: [0, 2, -2, 0],
+                  scale: [1, 1.05, 1]
                 }}
                 transition={{ 
-                  duration: 4,
+                  duration: 6,
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
               >
-                <Shield className="w-8 h-8 text-accent" />
+                <motion.img
+                  src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/project-uploads/f545d951-a949-4c13-9eac-3c8cdaf207bc/generated_images/website-logo-version-of-af-letters---mod-173726d4-20250908073727.jpg"
+                  alt="AF Logo"
+                  className="w-full h-full object-cover"
+                  whileHover={{ 
+                    scale: 1.1,
+                    rotate: 5
+                  }}
+                  transition={{ 
+                    type: "spring", 
+                    stiffness: 300, 
+                    damping: 20 
+                  }}
+                />
               </motion.div>
               <motion.div 
-                className="absolute inset-0 bg-accent/20 rounded-full blur-sm"
+                className="absolute inset-0 bg-accent/10 rounded-lg blur-sm -z-10"
                 animate={{ 
-                  opacity: [0.3, 0.6, 0.3],
-                  scale: [1, 1.2, 1]
+                  opacity: [0.2, 0.4, 0.2],
+                  scale: [1, 1.1, 1]
                 }}
                 transition={{ 
-                  duration: 3,
+                  duration: 4,
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
