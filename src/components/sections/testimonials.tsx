@@ -15,21 +15,21 @@ const Testimonials = () => {
     {
       name: "Rajesh Kumar",
       role: "Business Owner",
-      image: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/project-uploads/f545d951-a949-4c13-9eac-3c8cdaf207bc/generated_images/professional-headshot-of-a-confident-ind-44dd8b1a-20250905160208.jpg?",
+      image: "https://i.pravatar.cc/160?img=11",
       content: "Abhishek Financial Solutions made my home loan process incredibly smooth. Their team was supportive throughout, and I got the best interest rates in the market.",
       rating: 5
     },
     {
       name: "Priya Sharma",
       role: "Software Engineer", 
-      image: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/project-uploads/f545d951-a949-4c13-9eac-3c8cdaf207bc/generated_images/professional-headshot-of-a-confident-ind-e9f0b5c4-20250905160221.jpg?",
+      image: "https://i.pravatar.cc/160?img=32",
       content: "I needed urgent funds for my business expansion. Their quick approval process and flexible terms helped me achieve my goals without any hassle.",
       rating: 5
     },
     {
       name: "Amit Patel",
       role: "Entrepreneur",
-      image: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/project-uploads/f545d951-a949-4c13-9eac-3c8cdaf207bc/generated_images/professional-headshot-of-a-confident-ind-9c8e7f2d-20250905160232.jpg?",
+      image: "https://i.pravatar.cc/160?img=56",
       content: "The personal loan helped me consolidate my debts and get back on track financially. Professional service with transparent terms and competitive rates.",
       rating: 5
     }
